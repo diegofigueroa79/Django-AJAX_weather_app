@@ -5,6 +5,10 @@
 <body>
 
 <h1>What's My Weather?</h1>
-
+{% for city in cities %}
+<ul>
+<li>{{ city.name }}</li>
+</ul>
+{% endfor %}
 </body>
 </html> 
