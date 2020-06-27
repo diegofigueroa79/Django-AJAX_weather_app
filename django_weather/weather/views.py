@@ -15,12 +15,24 @@ def home(request):
 		if form.is_valid():
 			name = form.cleaned_data['name'].lower()
 			response = r.get(url.format(name)).json()
-			print(response['name'])
+			print(response)
 	
 	form = CityForm()
 	
+	city_list = []
+	for city in cities:
+		response = r.get(url.format(city.name)).json()
+		city_info = {
+			'name': response['name'],
+			'country': response['sys']['country'],
+			'temp': response['main']['temp'],
+			'description': response['weather'][0]['description'],
+			'icon': response['weather'][0]['icon'],			
+		}
+		city_list.append(city_info)
+	
 	context = {
-		'cities': cities,
+		'city_list': city_list,
 		'form': form,
 	}
 	

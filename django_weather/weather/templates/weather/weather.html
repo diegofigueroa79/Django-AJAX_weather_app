@@ -12,9 +12,11 @@
 	<input type="submit" value="Submit">
 </form>
 <br>
-{% for city in cities %}
+{% for city in city_list %}
 <ul>
-<li>{{ city.name }}</li>
+<li>{{ city.name }}, {{ city.country }}</li>
+<li>{{ city.temp }}</li>
+<li>{{ city.description }}</li>
 </ul>
 {% endfor %}
 </body>
