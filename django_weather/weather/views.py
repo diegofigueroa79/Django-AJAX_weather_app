@@ -15,17 +15,18 @@ def home(request):
 		if form.is_valid():
 			name = form.cleaned_data['name'].lower()
 			response = r.get(url.format(name)).json()
-			print(response)
+			
 	
 	form = CityForm()
 	
 	city_list = []
 	for city in cities:
 		response = r.get(url.format(city.name)).json()
+		temp = ((response['main']['temp']) - 273.15) * (9/5) + 32
 		city_info = {
 			'name': response['name'],
 			'country': response['sys']['country'],
-			'temp': response['main']['temp'],
+			'temp': round(temp),
 			'description': response['weather'][0]['description'],
 			'icon': response['weather'][0]['icon'],			
 		}

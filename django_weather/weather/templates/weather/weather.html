@@ -15,7 +15,7 @@
 {% for city in city_list %}
 <ul>
 <li>{{ city.name }}, {{ city.country }}</li>
-<li>{{ city.temp }}</li>
+<li>{{ city.temp }}<span>&#176;</span>F</li>
 <li>{{ city.description }}</li>
 </ul>
 {% endfor %}
