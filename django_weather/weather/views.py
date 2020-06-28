@@ -15,6 +15,11 @@ def home(request):
 		if form.is_valid():
 			name = form.cleaned_data['name'].lower()
 			response = r.get(url.format(name)).json()
+			if response['cod'] == 200:
+				if not City.objects.filter(name=name).exists():	
+					City(name=name).save()
+				else:
+					print("city already exists in db")
 			
 	
 	form = CityForm()
