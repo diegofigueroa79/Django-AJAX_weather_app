@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 
 import requests as r
 
@@ -43,3 +43,8 @@ def home(request):
 	}
 	
 	return render(request, 'weather/weather.html', context)
+
+def delete(request, city_name):
+	city = get_object_or_404(City, name=city_name.lower())
+	city.delete()
+	return redirect('weather:home')
