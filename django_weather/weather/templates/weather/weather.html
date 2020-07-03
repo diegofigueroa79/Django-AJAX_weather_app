@@ -11,39 +11,49 @@
 		<script defer src="{% static 'weather/js/index.js' %}"></script>
 	</head>
 	<body>
-		<div class="container"><h1 class="text-center">How's the Weather?</h1></div>
-		<br>
 		<div class="container">
-			<form action="{% url 'weather:home' %}" method="post">
-				{% csrf_token %}
-				<div class="form-group">
-				{{ form }}
-					<button type="submit" class="btn btn-primary">Add</button>
-				</div>
-			</form>
-		</div>
-		<br>
-		<div class="container">
-			{% for city in city_list %}
-				<ul class="list-group">
-					<div class="media">
-						<div class="media-body">
-							<h5 class="mt-0">
-								{{ city.name }}, {{ city.country }}
-							</h5>
-							<p>
-								{{ city.temp }}<span>&#176;</span>F</li>
-							</p>
-							<p>
-								{{ city.description|title }}
-							</p>
+			<div class="row justify-content-center">
+				<div class="col-8">
+					<h1 class="text-center">How's the Weather?</h1>
+				</div>	
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-8">
+					<form action="{% url 'weather:home' %}" method="post">
+						{% csrf_token %}
+						<div class="form-group">
+						{{ form }}
+							<button type="submit" class="btn btn-primary">Add</button>
 						</div>
-					</div>
-					<a href="{% url 'weather:delete' city.name %}" class="btn btn-danger" role="button">
-						Delete
-					</a>
-				</ul>
-			{% endfor %}
+					</form>
+				</div>
+			</div>
+			<br>
+		
+			<div class="row justify-content-center">
+				<div class="col-4">
+					{% for city in city_list %}
+						<ul class="list-group">
+							<div class="media">
+								<div class="media-body">
+									<h5 class="mt-0">
+										{{ city.name }}, {{ city.country }}
+									</h5>
+									<p>
+										{{ city.temp }}<span>&#176;</span>F</li>
+									</p>
+									<p>
+										{{ city.description|title }}
+									</p>
+								</div>
+							</div>
+							<a href="{% url 'weather:delete' city.name %}" class="close" role="button">
+								<span aria-hidden="true">&times;</span>
+							</a>
+						</ul>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 	</body>
 </html> 
