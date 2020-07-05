@@ -35,6 +35,7 @@
 					{% for city in city_list %}
 						<ul class="list-group">
 							<div class="media">
+								<img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="" class="mr-3">
 								<div class="media-body">
 									<h5 class="mt-0">
 										{{ city.name }}, {{ city.country }}
