@@ -5,21 +5,23 @@ import requests as r
 from .models import City
 from .forms import CityForm
 
+# weather api url
+url = 'http://api.openweathermap.org/data/2.5/weather?q={}&APPID=ad066ae896d05c232621a2f18019a69b'
+
 # Create your views here.
 def home(request):
 	cities = City.objects.all()
-	url = 'http://api.openweathermap.org/data/2.5/weather?q={}&APPID=ad066ae896d05c232621a2f18019a69b'
 	
-	if request.method == 'POST':
-		form = CityForm(request.POST)
-		if form.is_valid():
-			name = form.cleaned_data['name'].lower()
-			response = r.get(url.format(name)).json()
-			if response['cod'] == 200:
-				if not City.objects.filter(name=name).exists():	
-					City(name=name).save()
-				else:
-					print("city already exists in db")
+#	if request.method == 'POST':
+#		form = CityForm(request.POST)
+#		if form.is_valid():
+#			name = form.cleaned_data['name'].lower()
+#			response = r.get(url.format(name)).json()
+#			if response['cod'] == 200:
+#				if not City.objects.filter(name=name).exists():	
+#					City(name=name).save()
+#				else:
+#					print("city already exists in db")
 			
 	
 	form = CityForm()
@@ -43,6 +45,19 @@ def home(request):
 	}
 	
 	return render(request, 'weather/weather.html', context)
+
+def add(request):
+	form = CityForm(request.POST)
+	if form.is_valid():
+		name = form.cleaned_data['name'].lower()
+		response = r.get(url.format(name)).json()
+		if response['cod'] == 200:
+			if not City.objects.filter(name=name).exists():
+				City(name=name).save()
+			else:
+				print("City already exists in the db")
+		else:
+			print("This is not a valid city")
 
 def delete(request, city_name):
 	city = get_object_or_404(City, name=city_name.lower())
