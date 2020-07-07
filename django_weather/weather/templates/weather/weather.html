@@ -19,11 +19,12 @@
 			</div>
 			<div class="row justify-content-center">
 				<div class="col-8">
-					<form class="text-center" action="{% url 'weather:home' %}" method="post">
+					<form class="text-center" id="form" action="{% url 'weather:home' %}" method="post">
 						{% csrf_token %}
 						<div class="form-group">
 						{{ form }}
-							<button type="submit" class="btn btn-primary">Add</button>
+							<button type="submit" id="formButton"
+							data-url="{% url 'weather:add' %}" class="btn btn-primary">Add</button>
 						</div>
 					</form>
 				</div>
@@ -31,7 +32,7 @@
 			<br>
 		
 			<div class="row justify-content-center">
-				<div class="col-4">
+				<div class="col-4" id="taskList">
 					{% for city in city_list %}
 						<ul class="list-group">
 							<div class="media">
