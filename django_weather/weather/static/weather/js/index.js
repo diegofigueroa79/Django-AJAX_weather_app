@@ -1,27 +1,27 @@
-$(document).readyfunction(function(){
+$(document).ready(function(){
 
     // ajax function for adding city
     $('#formButton').click(function(){
         let serialData = $('#form').serialize();
-        let addUrl = $(this).data('url');
+		let addUrl = $(this).data('url');
         $.ajax({
             'url': addUrl,
             'data': serialData,
             'type': 'post',
             'success': function(response) {
-                $('#taskList').add(
+                $('#taskList').append(
                     `<ul class="list-group">
 						<div class="media">
-							<img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="" class="mr-3">
+							<img src="http://openweathermap.org/img/w/${response['city']['icon']}.png" alt="" class="mr-3">
 							<div class="media-body">
 								<h5 class="mt-0">
-									{{ city.name }}, {{ city.country }}
+									${response['city']['name']}, ${response['city']['country']}
 								</h5>
 								<p>
-									{{ city.temp }}<span>&#176;</span>F</li>
+									${response['city']['temp']}<span>&#176;</span>F</li>
 								</p>
 								<p>
-									{{ city.description|title }}
+									${response['city']['description']}
 								</p>
 							</div>
 						</div>
