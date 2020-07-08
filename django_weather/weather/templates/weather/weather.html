@@ -22,9 +22,9 @@
 					<form class="text-center" id="form" method="post">
 						{% csrf_token %}
 						<div class="form-group">
-						{{ form }}
-							<button type="submit" id="formButton"
-							data-url="{% url 'weather:home' %}" class="btn btn-primary">Add</button>
+							{{ form }}
+							<button type="button" id="formButton"
+							data-url="{% url 'weather:add' %}" class="btn btn-primary">Add</button>
 						</div>
 					</form>
 				</div>
