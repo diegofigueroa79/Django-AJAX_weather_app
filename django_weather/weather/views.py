@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 
 import requests as r
 
@@ -54,6 +55,16 @@ def add(request):
 		if response['cod'] == 200:
 			if not City.objects.filter(name=name).exists():
 				City(name=name).save()
+				temp = ((response['main']['temp']) - 273.15) * (9/5) + 32
+				city_info = {
+					'name': response['name'],
+					'country': response['sys']['country'],
+					'temp': round(temp),
+					'description': response['weather'][0]['description'],
+					'icon': response['weather'][0]['icon'],
+				}
+				# if all is correct, return JsonResponse object
+				return JsonResponse({'city': city_info}, status=200)
 			else:
 				print("City already exists in the db")
 		else:
