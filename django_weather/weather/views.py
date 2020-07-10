@@ -13,18 +13,6 @@ url = 'http://api.openweathermap.org/data/2.5/weather?q={}&APPID=ad066ae896d05c2
 def home(request):
 	cities = City.objects.all()
 	
-#	if request.method == 'POST':
-#		form = CityForm(request.POST)
-#		if form.is_valid():
-#			name = form.cleaned_data['name'].lower()
-#			response = r.get(url.format(name)).json()
-#			if response['cod'] == 200:
-#				if not City.objects.filter(name=name).exists():	
-#					City(name=name).save()
-#				else:
-#					print("city already exists in db")
-			
-	
 	form = CityForm()
 	
 	city_list = []
