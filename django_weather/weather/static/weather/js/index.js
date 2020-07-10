@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+	let csrfToken = $('input[name=csrfmiddlewaretoken]').val();
+
     // ajax function for adding city
     $('#formButton').click(function(){
         let serialData = $('#form').serialize();
@@ -32,6 +34,24 @@ $(document).ready(function(){
                 );
             }
         });
-    });
+	});
+	
+	$('#deleteButton').click(function(){
+		let deletebtn = $(this)
+		let listGroup = $(deletebtn).parents('.list-group')
+		// add custom data-name attribute to .list-group element
+		let cityName = listGroup.data('name')
+		$.ajax({
+			'url': `/delete/${cityName}/`,
+			'data': {
+				'csrfmiddlewaretoken': csrfToken,
+				'name': cityName,
+			},
+			'type': 'post',
+			'success': function(response){
+				listGroup.remove();
+			}
+		})
+	})
 
 });
