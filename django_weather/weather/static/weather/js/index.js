@@ -12,7 +12,7 @@ $(document).ready(function(){
             'type': 'post',
             'success': function(response) {
                 $('#taskList').append(
-                    `<ul class="list-group">
+                    `<ul class="list-group" data-name="${response['city']['name']}">
 						<div class="media">
 							<img src="http://openweathermap.org/img/w/${response['city']['icon']}.png" alt="" class="mr-3">
 							<div class="media-body">
@@ -27,16 +27,16 @@ $(document).ready(function(){
 								</p>
 							</div>
 						</div>
-						<a href="{% url 'weather:delete' city.name %}" class="close" role="button">
+						<a class="close deleteButton" role="button">
 							<span aria-hidden="true">&times;</span>
 						</a>
 					</ul>`
                 );
             }
-        });
+		});
 	});
 	
-	$('#deleteButton').click(function(){
+	$('#taskList').on('click', '.deleteButton', function(){
 		let deletebtn = $(this)
 		let listGroup = $(deletebtn).parents('.list-group')
 		// add custom data-name attribute to .list-group element
