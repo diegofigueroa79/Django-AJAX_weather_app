@@ -34,7 +34,7 @@
 			<div class="row justify-content-center">
 				<div class="col-4" id="taskList">
 					{% for city in city_list %}
-						<ul class="list-group">
+						<ul class="list-group" data-name="{{city.name}}">
 							<div class="media">
 								<img src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="" class="mr-3">
 								<div class="media-body">
@@ -49,7 +49,7 @@
 									</p>
 								</div>
 							</div>
-							<a href="{% url 'weather:delete' city.name %}" class="close" role="button">
+							<a class="close deleteButton" role="button">
 								<span aria-hidden="true">&times;</span>
 							</a>
 						</ul>
