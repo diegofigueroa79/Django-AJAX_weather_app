@@ -34,6 +34,7 @@ $(document).ready(function(){
                 );
             }
 		});
+		$('#form')[0].reset();
 	});
 	
 	$('#taskList').on('click', '.deleteButton', function(){
