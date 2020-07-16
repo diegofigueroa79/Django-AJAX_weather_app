@@ -41,6 +41,9 @@
 									<h5 class="mt-0">
 										{{ city.name }}, {{ city.country }}
 									</h5>
+									<a class="close deleteButton" role="button">
+										<span aria-hidden="true">&times;</span>
+									</a>
 									<p>
 										{{ city.temp }}<span>&#176;</span>F</li>
 									</p>
@@ -49,9 +52,6 @@
 									</p>
 								</div>
 							</div>
-							<a class="close deleteButton" role="button">
-								<span aria-hidden="true">&times;</span>
-							</a>
 						</ul>
 					{% endfor %}
 				</div>

@@ -19,6 +19,9 @@ $(document).ready(function(){
 								<h5 class="mt-0">
 									${response['city']['name']}, ${response['city']['country']}
 								</h5>
+								<a class="close deleteButton" role="button">
+									<span aria-hidden="true">&times;</span>
+								</a>
 								<p>
 									${response['city']['temp']}<span>&#176;</span>F</li>
 								</p>
@@ -27,9 +30,6 @@ $(document).ready(function(){
 								</p>
 							</div>
 						</div>
-						<a class="close deleteButton" role="button">
-							<span aria-hidden="true">&times;</span>
-						</a>
 					</ul>`
                 );
             }
