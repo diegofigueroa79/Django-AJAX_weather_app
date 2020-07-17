@@ -1,1 +1,1 @@
-# django-weather
+# Django-AJAX_weather_app
